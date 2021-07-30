@@ -116,10 +116,6 @@ function validationDOB(){
     DOBInvalide.textContent = "Il vous faut renseigner votre date de naissance";
     DOB.className = 'text-control error';
     return false;
-  //}else if (!/^\d{4}(\-)(((0)[0-9])|((1)[0-2]))(\-)([0-2][0-9]|(3)[0-1])$/g.test(birthDate.value)){
-    //DOBInvalide.textContent = "La date de naissance est invalide";
-    //DOB.className = 'text-control error';
-    //return false;
   }else{
     DOBInvalide.textContent = "";
     DOB.className = 'text-control';
@@ -127,6 +123,14 @@ function validationDOB(){
   }
 }
 //time stamp to date 
+
+//convertir la DOB en timestramp
+//obtenir et stocker dans une variable, la date du jour
+//    const today = new Date();
+//    const todayTimestramp = today.getTime();
+//obtenir et stocker dans une variable, la date de 1920
+//    const date1920 = new Date("January 1 1920 00:00");
+//SI date du jour > DOB > date de 1920, ALORS return true, SINON return false 
 
 
 //validation des tournois 
