@@ -208,6 +208,31 @@ input {
   font-size: 20px;
   height: 48px;
 }
+
+label{
+  font-size: 0.5em;
+}
+
+.error{
+  margin: 0;
+  padding: 8px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 20px;
+  height: 48px;
+  border: 2px solid #e54858;
+}
+
+.errorMessage{
+  font-size: 10px;
+  color: red;
+}
+
+.success{
+  border: 2px solid grey;
+}
+
+/* 
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.4em;
@@ -226,7 +251,7 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
+
 input[data-error]::after {
     content: attr(data-error);
     font-size: 0.4em;
@@ -402,7 +427,8 @@ input[data-error]::after {
 /* custom select end */
 .text-label {
   font-weight: normal;
-  font-size: 16px;
+  font-size: 0.5em;
+  padding-left: 0;
 }
 .hero-section {
   min-height: 93vh;
@@ -527,3 +553,180 @@ footer {
   }
 }
 
+/*
+email.addEventListener('input', function(e)){
+  if (email.validity.typeMismatch){
+    emailInvalide.setCustomValidity("L'adresse email est invalide"); 
+  } else {
+    emailInvalide.setCustomValidity("");
+  }
+}
+
+prenom.addEventListener('input', function(e)){
+  if (prenom.validityState.rangeUnderflow){
+    prenomInvalide.setCustomValidity("Veuillez rentrer au minimum 2 caractères");
+  } else {
+    prenomInvalide.setCustomValidity("");
+  }
+}
+
+function validationFunction(e){
+  if (prenom.validity.valueMissing){
+    e.preventDefault();
+    prenomInvalide.textContent = "Vous devez renseigner votre prénom";
+    prenomInvalide.style.color = "red";
+  }else if(nom.validity.valueMissing){
+    e.preventDefault();
+    nomInvalide.textContent = "Vous devez renseigner votre nom";
+    nomInvalide.style.color = "red";
+  }else if(email.validity.valueMissing){
+    e.preventDefault();
+    emailInvalide.textContent = "Vous devez renseigner votre adresse email";
+    emailInvalide.style.color = "red";
+  }else if(tournois.validity.valueMissing){
+    e.preventDefault();
+    tournoisInvalide.textContent = "Vous devez renseigner ce champs";
+    tournoisInvalide.style.color = "red";
+  }else{
+    alert("Merci! Votre réservation a bien été reçue");
+  }
+
+}
+
+
+ }else if (prenom.validityState.tooShort){
+    e.preventDefault();
+    prenomInvalide.textContent = "Vous devez renseigner votre prénom";
+    prenom.className = 'textControl error';
+
+
+
+
+DEUXIEME METHODE 
+
+
+
+
+
+// form submited 
+
+form.addEventListener('submit', (e) =>{
+  e.preventDefault();
+  checkInputs();
+});
+
+
+// checking the inputs 
+
+function checkInputs() {
+
+  //get the values from the inputs 
+  const prenomValue = prenom.value.trim(); //trim function to remove white spaces 
+  const nomValue = nom.value.trim();
+  const emailValue = email.value.trim();
+  const DOBValue = DOB.value.trim();
+
+  //we check if the value is empty 
+  if (prenomValue === '') {
+    //show an error 
+    //add error class 
+    setErrorFor(prenom, 'Le champs prénom est obligatoire');
+  }
+
+  else if (nomValue === ''){
+    setErrorFor(nom, 'Le champs nom est obligatoire')
+  }
+
+  else if (emailValue ==='') {
+    setErrorFor(email, 'Le champs email est obligatoire');
+  }else if(!isEmailValid(emailValue)){
+    setErrorFor(email, "L'email saisi n'est pas valide");
+  }
+
+  else{
+    alert("Merci! Votre réservation a bien été reçue");
+  }
+}
+
+
+
+function setErrorFor(input, message){
+  const prenomInvalide = document.getElementById("prenomInvalide");
+
+  //add the error message into the span 
+  prenomInvalide.textContent = message; //ou innerText ?
+  //add the error class, to the input 
+  prenom.className = 'textControl error';
+}
+
+function isEmailValid(email){
+  return regexcodeline// .test(email);
+}
+
+
+//>> call the ValidityState.tooShort 
+//>> checkValidity() returns true if the element's value has no validity problems ; false otherwise. 
+
+
+
+
+
+
+DEUXIEME METHODE 
+
+
+
+function validationFunction(e){
+  if (prenom.validity.valueMissing){
+    e.preventDefault();
+    prenomInvalide.textContent = "Vous devez renseigner votre prénom";
+    prenom.className = 'textControl error';
+  }else if (prenom.value.lenght < 2){
+    e.preventDefault();
+    prenomInvalide.textContent = "Veuillez entrer au minimum 2 caractères";
+    prenom.className = 'textControl error';
+    return false;
+  }else if(nom.validity.valueMissing){
+    e.preventDefault();
+    nomInvalide.textContent = "Vous devez renseigner votre nom";
+    nom.className = 'textControl error';
+  }else if(email.validity.valueMissing){
+    e.preventDefault();
+    emailInvalide.textContent = "Vous devez renseigner votre adresse email";
+    email.className = 'textControl error';
+  }else if(DOB.validity.valueMissing){
+    e.preventDefault();
+    DOBInvalide.textContent = "Vous devez renseigner votre date de naissance";
+    DOB.className = 'textControl error';
+  }else if(tournois.validity.valueMissing){
+    e.preventDefault();
+    tournoisInvalide.textContent = "Vous devez renseigner ce champs";
+    tournois.className = 'textControl error';
+  }else if(!CGU.checked){
+    e.preventDefault();
+    CGUInvalide.textContent = "Vous devez accepter les conditions d'utilisation";
+    CGU.className = 'textControl error';
+  }else{
+    alert("Merci! Votre réservation a bien été reçue");
+    //Submit
+    //sendData(formData);
+    //Replace HTML content of modal .content, with the successfull text + close btn
+    //modalContent.innerHTML = " <span class='close'></span><p class='thankYou'>Thank you for submitting your registration details</p><div id='closeSucessModal' class='button' >Close</div>";
+  }
+}
+
+
+
+//validation des villes (radio)
+function validationVille(e){
+  if (ville.validity.valueMissing){
+    e.preventDefault();
+    tournoisInvalide.textContent = "Vous devez choisir une ville";
+    return false;
+  }else{
+    tournoisInvalide.textContent = "";
+    return true;
+  } 
+}
+
+*/
