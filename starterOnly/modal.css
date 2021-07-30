@@ -183,6 +183,20 @@ main {
   padding-top: 10px;
 }
 
+.content-success{
+  display: none;
+  font-family: var(--font-default);
+  font-size: 30px;
+  font-weight: normal;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  height: 100%;
+  text-align: center;
+}
+
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
@@ -351,6 +365,17 @@ input[data-error]::after {
   background: #fe142f;
   display: block;
   margin: 0 auto;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 12px 82px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+}
+.btn-close{
+  background: #fe142f;
+  display: block;
+  margin: 50px auto auto auto;
   border-radius: 7px;
   font-size: 1rem;
   padding: 12px 82px;

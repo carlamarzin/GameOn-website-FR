@@ -23,12 +23,15 @@ function launchModal() {
 // close modal event 
 const closeButton = document.querySelector(".close"); 
 
-closeButton.addEventListener('click', closeModal) 
+closeButton.addEventListener('click', closeModal);
 
 // close modal form 
 function closeModal() {                     
   modalbg.style.display = 'none';
 }
+
+
+
 
 
 // form validation : création des variables
@@ -96,6 +99,10 @@ function validationEmail(){
     emailInvalide.textContent = "Il vous faut renseigner votre adresse email";
     email.className = 'text-control error';
     return false;
+  }else if (!/^[\w.-]+@([\w-]+\.)+[\w-]{2,10}$/g.test(email.value)){
+    emailInvalide.textContent = "L'adresse email est invalide";
+    email.className = 'text-control error';
+    return false;
   }else{
     emailInvalide.textContent = "";
     email.className = 'text-control';
@@ -109,12 +116,18 @@ function validationDOB(){
     DOBInvalide.textContent = "Il vous faut renseigner votre date de naissance";
     DOB.className = 'text-control error';
     return false;
+  //}else if (!/^\d{4}(\-)(((0)[0-9])|((1)[0-2]))(\-)([0-2][0-9]|(3)[0-1])$/g.test(birthDate.value)){
+    //DOBInvalide.textContent = "La date de naissance est invalide";
+    //DOB.className = 'text-control error';
+    //return false;
   }else{
     DOBInvalide.textContent = "";
     DOB.className = 'text-control';
     return true;
   }
 }
+//time stamp to date 
+
 
 //validation des tournois 
 function validationTournois(){
@@ -159,9 +172,10 @@ function validationGenerale(e){
   if (formulaireValide){
     e.preventDefault();
     //affichage du message de validation (remplacer le contenu de la modale, par un message de validation)
-    alert("Merci! Votre réservation a bien été reçue");
-    let modalBody = document.getElementsByClassName('modal-body');
-    modalBody.innerHTML = "<span class='close'></span><p class='thankYou'>Thank you for submitting your registration details</p><div id='closeSucessModal' class='button' >Close</div>";
+    let formulaire = document.getElementById("form");
+    formulaire.style.display = "none";
+    let modalSuccess = document.getElementById("content-success");
+    modalSuccess.style.display = "flex";
   }else{
     return false;
   }
