@@ -69,10 +69,19 @@ img {
 }
 
 @media screen and (max-width: 768px) {
+  .topnav{
+    margin: 30px;
+  }
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
     display: block;
+  }
+  .header-logo img{
+    width: 130px;
+  }
+  .hero-content .hero-headline h1{
+    font-size: 20px;
   }
 }
 
@@ -192,9 +201,13 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 4rem;
+  padding: 4rem 4rem 0 4rem;
   height: 100%;
   text-align: center;
+}
+
+.content-success p {
+  padding : 12rem 0;
 }
 
 .modal-body {
@@ -271,6 +284,8 @@ input[data-error]::after {
     font-size: 0.4em;
     color: red;
 } */
+
+
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -456,7 +471,7 @@ input[data-error]::after {
   padding-left: 0;
 }
 .hero-section {
-  min-height: 93vh;
+  /*min-height: 93vh;*/
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -533,11 +548,12 @@ footer {
   .hero-section {
     display: block;
     box-shadow: unset;
+    min-height: none;
   }
   .hero-content {
     background: #fff;
     color: #000;
-    padding: 20px;
+    padding: 0;
   }
   .hero-content::after {
     content: unset;
@@ -546,12 +562,14 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 2.3rem;
     white-space: normal;
+    width: 80%;
   }
   .hero-text {
-    width: unset;
-    font-size: 1.5rem;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    width: 80%;
   }
   .hero-img img {
     border-radius: 10px;
@@ -563,8 +581,18 @@ footer {
     padding: 12px 35px;
   }
   .copyrights {
-    margin-top: 50px;
     text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+
+  .content{
+    margin-top: 70px;
+    margin-bottom: 0;
+    border-radius: 10px 10px 0 0;
+  }
+  .content-success p{
+    padding: 170px 0;
   }
 }
 
@@ -577,181 +605,3 @@ footer {
     opacity: 1;
   }
 }
-
-/*
-email.addEventListener('input', function(e)){
-  if (email.validity.typeMismatch){
-    emailInvalide.setCustomValidity("L'adresse email est invalide"); 
-  } else {
-    emailInvalide.setCustomValidity("");
-  }
-}
-
-prenom.addEventListener('input', function(e)){
-  if (prenom.validityState.rangeUnderflow){
-    prenomInvalide.setCustomValidity("Veuillez rentrer au minimum 2 caractères");
-  } else {
-    prenomInvalide.setCustomValidity("");
-  }
-}
-
-function validationFunction(e){
-  if (prenom.validity.valueMissing){
-    e.preventDefault();
-    prenomInvalide.textContent = "Vous devez renseigner votre prénom";
-    prenomInvalide.style.color = "red";
-  }else if(nom.validity.valueMissing){
-    e.preventDefault();
-    nomInvalide.textContent = "Vous devez renseigner votre nom";
-    nomInvalide.style.color = "red";
-  }else if(email.validity.valueMissing){
-    e.preventDefault();
-    emailInvalide.textContent = "Vous devez renseigner votre adresse email";
-    emailInvalide.style.color = "red";
-  }else if(tournois.validity.valueMissing){
-    e.preventDefault();
-    tournoisInvalide.textContent = "Vous devez renseigner ce champs";
-    tournoisInvalide.style.color = "red";
-  }else{
-    alert("Merci! Votre réservation a bien été reçue");
-  }
-
-}
-
-
- }else if (prenom.validityState.tooShort){
-    e.preventDefault();
-    prenomInvalide.textContent = "Vous devez renseigner votre prénom";
-    prenom.className = 'textControl error';
-
-
-
-
-DEUXIEME METHODE 
-
-
-
-
-
-// form submited 
-
-form.addEventListener('submit', (e) =>{
-  e.preventDefault();
-  checkInputs();
-});
-
-
-// checking the inputs 
-
-function checkInputs() {
-
-  //get the values from the inputs 
-  const prenomValue = prenom.value.trim(); //trim function to remove white spaces 
-  const nomValue = nom.value.trim();
-  const emailValue = email.value.trim();
-  const DOBValue = DOB.value.trim();
-
-  //we check if the value is empty 
-  if (prenomValue === '') {
-    //show an error 
-    //add error class 
-    setErrorFor(prenom, 'Le champs prénom est obligatoire');
-  }
-
-  else if (nomValue === ''){
-    setErrorFor(nom, 'Le champs nom est obligatoire')
-  }
-
-  else if (emailValue ==='') {
-    setErrorFor(email, 'Le champs email est obligatoire');
-  }else if(!isEmailValid(emailValue)){
-    setErrorFor(email, "L'email saisi n'est pas valide");
-  }
-
-  else{
-    alert("Merci! Votre réservation a bien été reçue");
-  }
-}
-
-
-
-function setErrorFor(input, message){
-  const prenomInvalide = document.getElementById("prenomInvalide");
-
-  //add the error message into the span 
-  prenomInvalide.textContent = message; //ou innerText ?
-  //add the error class, to the input 
-  prenom.className = 'textControl error';
-}
-
-function isEmailValid(email){
-  return regexcodeline// .test(email);
-}
-
-
-//>> call the ValidityState.tooShort 
-//>> checkValidity() returns true if the element's value has no validity problems ; false otherwise. 
-
-
-
-
-
-
-DEUXIEME METHODE 
-
-
-
-function validationFunction(e){
-  if (prenom.validity.valueMissing){
-    e.preventDefault();
-    prenomInvalide.textContent = "Vous devez renseigner votre prénom";
-    prenom.className = 'textControl error';
-  }else if (prenom.value.lenght < 2){
-    e.preventDefault();
-    prenomInvalide.textContent = "Veuillez entrer au minimum 2 caractères";
-    prenom.className = 'textControl error';
-    return false;
-  }else if(nom.validity.valueMissing){
-    e.preventDefault();
-    nomInvalide.textContent = "Vous devez renseigner votre nom";
-    nom.className = 'textControl error';
-  }else if(email.validity.valueMissing){
-    e.preventDefault();
-    emailInvalide.textContent = "Vous devez renseigner votre adresse email";
-    email.className = 'textControl error';
-  }else if(DOB.validity.valueMissing){
-    e.preventDefault();
-    DOBInvalide.textContent = "Vous devez renseigner votre date de naissance";
-    DOB.className = 'textControl error';
-  }else if(tournois.validity.valueMissing){
-    e.preventDefault();
-    tournoisInvalide.textContent = "Vous devez renseigner ce champs";
-    tournois.className = 'textControl error';
-  }else if(!CGU.checked){
-    e.preventDefault();
-    CGUInvalide.textContent = "Vous devez accepter les conditions d'utilisation";
-    CGU.className = 'textControl error';
-  }else{
-    alert("Merci! Votre réservation a bien été reçue");
-    //Submit
-    //sendData(formData);
-    //Replace HTML content of modal .content, with the successfull text + close btn
-    //modalContent.innerHTML = " <span class='close'></span><p class='thankYou'>Thank you for submitting your registration details</p><div id='closeSucessModal' class='button' >Close</div>";
-  }
-}
-
-
-
-//validation des villes (radio)
-function validationVille(e){
-  if (ville.validity.valueMissing){
-    e.preventDefault();
-    tournoisInvalide.textContent = "Vous devez choisir une ville";
-    return false;
-  }else{
-    tournoisInvalide.textContent = "";
-    return true;
-  } 
-}
-
-*/
