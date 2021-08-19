@@ -22,10 +22,10 @@ function launchModal() {
 
 // close modal event 
 const closeButton = document.querySelector(".close"); 
-const closeButtonSucess = document.querySelector(".btn-close");
+const closeButtonSuccess = document.querySelector(".btn-close");
 
 closeButton.addEventListener('click', closeModal);
-closeButtonSucess.addEventListener('click', closeModal);
+closeButtonSuccess.addEventListener('click', closeModal);
 
 // close modal form 
 function closeModal() {                     
@@ -114,7 +114,27 @@ function validationEmail(){
 
 //validation de la date de naissance 
 function validationDOB(){
-  if (DOB.validity.valueMissing){
+
+//convertir la DOB en timestramp
+  const DOBtoTimestramp = new Date(DOB);
+  const anneeDOB = DOB.getFullYear();
+//obtenir et stocker dans une variable, la date du jour
+  const dateDuJour = new Date.now();
+  const anneeEnCours = dateDuJour.getFullYear();
+//obtenir et stocker dans une variable, la date de 1920
+  const anneeLimite = 1920;
+  
+//SI date du jour > DOB > date de 1920, ALORS return true, SINON return false 
+
+  if (anneeDOB > anneeEnCours){
+    DOBInvalide.textContent = "La date de naissance est incorrecte";
+    DOB.className = 'text-control error';
+    return false;
+  }else if (anneeDOB < anneeLimite){
+    DOBInvalide.textContent = "La date de naissance est incorrecte";
+    DOB.className = 'text-control error';
+    return false;
+  }else if (DOB.validity.valueMissing){
     DOBInvalide.textContent = "Il vous faut renseigner votre date de naissance";
     DOB.className = 'text-control error';
     return false;
@@ -123,17 +143,6 @@ function validationDOB(){
     DOB.className = 'text-control';
     return true;
   }
-}
-//time stamp to date 
-
-//convertir la DOB en timestramp
-//obtenir et stocker dans une variable, la date du jour
-//    const today = new Date();
-//    const todayTimestramp = today.getTime();
-//obtenir et stocker dans une variable, la date de 1920
-//    const date1920 = new Date("January 1 1920 00:00");
-//SI date du jour > DOB > date de 1920, ALORS return true, SINON return false 
-
 
 //validation des tournois 
 function validationTournois(){
@@ -147,8 +156,6 @@ function validationTournois(){
     return true;
   } 
 }
-
-//isnotaNAN 
 
 //validation des CGU 
 function validationCGU(e){
