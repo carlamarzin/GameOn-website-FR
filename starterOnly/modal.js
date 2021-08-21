@@ -17,7 +17,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
 function launchModal() {
-  modalbg.style.display = "block";
+  modalbg.style.display = 'block';
 }
 
 // close modal event 
@@ -33,13 +33,10 @@ function closeModal() {
 }
 
 
-
-
-
 // form validation : création des variables
 var form = document.getElementById("form");
 
-var prenom = document.getElementById("first");
+const prenom = document.getElementById("first");
 var prenomInvalide = document.getElementById("prenomInvalide");
 
 var nom = document.getElementById("last"); 
@@ -49,6 +46,7 @@ var email = document.getElementById("email");
 var emailInvalide = document.getElementById("emailInvalide"); 
 
 var DOB = document.getElementById("birthdate");
+var DOBYear = DOB.getFullYear();
 var DOBInvalide = document.getElementById("DOBInvalide");
 
 var tournois = document.getElementById("quantity");
@@ -59,6 +57,7 @@ var villeInvalide = document.getElementById("villeInvalide");
 
 var CGU = document.getElementById("checkbox1");
 var CGUInvalide = document.getElementById("CGUInvalide");
+
 
 
 //validation du prénom 
@@ -108,34 +107,20 @@ function validationEmail(){
   }else{
     emailInvalide.textContent = "";
     email.className = 'text-control';
-    return true;
+    return console.log(DOB);
   }
 }
 
+
+
 //validation de la date de naissance 
 function validationDOB(){
-
-//convertir la DOB en timestramp
-  const DOBtoTimestramp = new Date(DOB);
-  const anneeDOB = DOB.getFullYear();
-//obtenir et stocker dans une variable, la date du jour
-  const dateDuJour = new Date.now();
-  const anneeEnCours = dateDuJour.getFullYear();
-//obtenir et stocker dans une variable, la date de 1920
-  const anneeLimite = 1920;
-  
-//SI date du jour > DOB > date de 1920, ALORS return true, SINON return false 
-
-  if (anneeDOB > anneeEnCours){
-    DOBInvalide.textContent = "La date de naissance est incorrecte";
-    DOB.className = 'text-control error';
-    return false;
-  }else if (anneeDOB < anneeLimite){
-    DOBInvalide.textContent = "La date de naissance est incorrecte";
-    DOB.className = 'text-control error';
-    return false;
-  }else if (DOB.validity.valueMissing){
+  if(DOB.validity.valueMissing){
     DOBInvalide.textContent = "Il vous faut renseigner votre date de naissance";
+    DOB.className = 'text-control error';
+    return false;
+  }else if(DOBYear < 1920 || DOBYear >= 2021){
+    DOBInvalide.textContent = "Il vous faut renseigner une date de naissance valide";
     DOB.className = 'text-control error';
     return false;
   }else{
@@ -143,6 +128,8 @@ function validationDOB(){
     DOB.className = 'text-control';
     return true;
   }
+}
+
 
 //validation des tournois 
 function validationTournois(){
@@ -196,6 +183,4 @@ function validationGenerale(e){
 
 //Ecouter l'évènement click sur le bouton submit, pour valider ou non le formulaire
 const validation = document.querySelector(".btn-submit");
-validation.addEventListener("click", validationGenerale);
-
-//              onsubmit="return validate();"
+validation.addEventListener("click", validationGenerale)
