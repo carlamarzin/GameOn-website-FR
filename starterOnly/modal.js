@@ -36,7 +36,7 @@ function closeModal() {
 // form validation : création des variables
 var form = document.getElementById("form");
 
-const prenom = document.getElementById("first");
+var prenom = document.getElementById("first");
 var prenomInvalide = document.getElementById("prenomInvalide");
 
 var nom = document.getElementById("last"); 
@@ -46,7 +46,6 @@ var email = document.getElementById("email");
 var emailInvalide = document.getElementById("emailInvalide"); 
 
 var DOB = document.getElementById("birthdate");
-var DOBYear = DOB.getFullYear();
 var DOBInvalide = document.getElementById("DOBInvalide");
 
 var tournois = document.getElementById("quantity");
@@ -107,11 +106,9 @@ function validationEmail(){
   }else{
     emailInvalide.textContent = "";
     email.className = 'text-control';
-    return console.log(DOB);
+    return true;
   }
 }
-
-
 
 //validation de la date de naissance 
 function validationDOB(){
@@ -119,7 +116,13 @@ function validationDOB(){
     DOBInvalide.textContent = "Il vous faut renseigner votre date de naissance";
     DOB.className = 'text-control error';
     return false;
-  }else if(DOBYear < 1920 || DOBYear >= 2021){
+  }
+  
+  var DOBValue = DOB.value;
+  var DOBDate = new Date(DOBValue);
+  var DOBYear = DOBDate.getFullYear();
+
+  if(DOBYear < 1920 || DOBYear >= 2021){
     DOBInvalide.textContent = "Il vous faut renseigner une date de naissance valide";
     DOB.className = 'text-control error';
     return false;
