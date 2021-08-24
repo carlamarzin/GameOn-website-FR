@@ -117,7 +117,7 @@ function validationDOB(){
     DOB.className = 'text-control error';
     return false;
   }
-  
+
   var DOBValue = DOB.value;
   var DOBDate = new Date(DOBValue);
   var DOBYear = DOBDate.getFullYear();
@@ -186,4 +186,4 @@ function validationGenerale(e){
 
 //Ecouter l'évènement click sur le bouton submit, pour valider ou non le formulaire
 const validation = document.querySelector(".btn-submit");
-validation.addEventListener("click", validationGenerale)
+validation.addEventListener("click", validationGenerale);
